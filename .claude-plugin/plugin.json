@@ -1,0 +1,8 @@
+{
+  "name": "note-fig",
+  "version": "0.1.0",
+  "description": "note の記事に、スマホで読める挿絵（表・比較・流れ・グラフなど）を JSON から作る。Figma 不要。",
+  "author": { "name": "Shibano Daiki (Bigtree Lab)" },
+  "license": "MIT",
+  "keywords": ["note", "illustration", "figure", "chart", "japanese"]
+}

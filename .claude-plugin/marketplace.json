@@ -1,0 +1,15 @@
+{
+  "name": "bigtree-lab",
+  "description": "Bigtree Lab が公開している Claude Code プラグイン",
+  "owner": {
+    "name": "Shibano Daiki (Bigtree Lab)"
+  },
+  "plugins": [
+    {
+      "name": "note-fig",
+      "source": "./",
+      "description": "note の記事に、スマホで読める挿絵を JSON から作る。Figma 不要。",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -313,6 +313,12 @@
       out.push({ level: "warn", rule: "table-cols", msg: `表が ${spec.columns.length} 列。スマホでは3列が限界（3列ならセルは7字まで）。列を減らすか表を分ける` });
     const keyGroups = Array.isArray(spec.key) && !(spec.type === "table") ? spec.key.length : 1;
     if (keyGroups > 1) out.push({ level: "warn", rule: "one-accent", msg: `主役の色が ${keyGroups} 箇所にある。主役は1枚に1箇所` });
+    // ブランドの色が文字として読めるか（自分のブランドに差し替えたときの事故を防ぐ）
+    const base = cssVar("--color-base");
+    [["--color-ink", 4.5, "文字と線"], ["--color-muted", 4.5, "注記"], ["--color-accent", 3, "主役の文字"]].forEach(([v, min, role]) => {
+      const c = contrast(cssVar(v), base);
+      if (c < min) out.push({ level: "warn", rule: "brand-contrast", msg: `${v}（${role}）と地の色のコントラスト比が ${c.toFixed(2)}。${min} 以上ほしい（tokens.css を見直す）` });
+    });
     const r = root.getBoundingClientRect();
     return { issues: out, width: Math.round(r.width), height: Math.round(r.height) };
   }
