@@ -1,0 +1,3 @@
+{"type":"flow","title":"挿絵ができるまで",
+ "steps":[{"label":"記事を読む"},{"label":"型を選ぶ","sub":"表か流れか"},{"label":"PNGにする"}],
+ "key":1}

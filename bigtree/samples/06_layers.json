@@ -1,0 +1,3 @@
+{"type":"layers","title":"デザインの層",
+ "layers":[{"label":"Organism","sub":"表・比較・流れ"},{"label":"トークン","sub":"色・文字・余白"},{"label":"note の制約","sub":"表示幅 343pt"}],
+ "key":0}

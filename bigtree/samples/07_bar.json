@@ -1,0 +1,4 @@
+{"type":"bar","title":"1本の記事にかかる時間",
+ "unit":"分",
+ "items":[{"label":"構成","value":20},{"label":"執筆","value":45},{"label":"挿絵","value":60},{"label":"見直し","value":15}],
+ "key":2,"note":"※ 試作室の手元の記録（例）"}

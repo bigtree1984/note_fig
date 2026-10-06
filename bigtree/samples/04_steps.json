@@ -1,0 +1,3 @@
+{"type":"steps","title":"はじめての3ステップ",
+ "steps":[{"label":"リポジトリを入れる","detail":"Claude Code のプラグインとして追加"},{"label":"記事を渡す","detail":"下書きの md か URL"},{"label":"見え方を確かめる","detail":"スマホ表示で読めるか"}],
+ "key":2}

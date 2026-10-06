@@ -1,0 +1,181 @@
+/* Organism の見た目。色・書体はブランドの tokens.css、寸法は note.css から取る */
+
+body { margin: 0; background: #E9E7E2; }
+
+.figure-root {
+  width: var(--figure-width);
+  box-sizing: border-box;
+  padding: var(--space-6);
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-family);
+  font-size: var(--figure-2);
+  line-height: 1.5;
+}
+.figure-root * { box-sizing: border-box; }
+
+.fig-title {
+  margin: 0 0 var(--space-6);
+  font-size: var(--figure-3);
+  line-height: 1.3;
+  font-weight: var(--weight-black);
+}
+.fig-note {
+  margin: var(--space-5) 0 0;
+  font-size: var(--figure-1);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+.is-key-text { color: var(--color-accent); }
+
+/* ---- table -------------------------------------------------- */
+.o-table { width: 100%; border-collapse: collapse; }
+.o-table th, .o-table td {
+  font-size: var(--figure-1); line-height: 1.5;
+  padding: var(--space-3) var(--space-4); text-align: left; vertical-align: top;
+}
+.o-table th { background: var(--color-ink); color: var(--color-base); font-weight: var(--weight-bold); }
+.o-table th:first-child { border-radius: var(--radius-2) 0 0 0; }
+.o-table th:last-child  { border-radius: 0 var(--radius-2) 0 0; }
+.o-table td { border-bottom: var(--figure-stroke-min) solid var(--color-surface); }
+.o-table tbody tr:nth-child(even) td { background: var(--color-surface); }
+.o-table td:first-child { font-weight: var(--weight-bold); white-space: nowrap; }
+.o-table td.is-key {
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-base));
+  font-weight: var(--weight-bold);
+  box-shadow: inset var(--figure-stroke-min) 0 0 0 var(--color-accent);
+}
+
+/* ---- compare ----------------------------------------------- */
+.o-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-4); align-items: stretch; }
+.o-compare .side {
+  border: var(--figure-stroke-min) solid var(--color-ink); border-radius: var(--radius-3);
+  padding: var(--space-5); background: var(--color-base);
+}
+.o-compare .side.is-key { border-color: var(--color-accent); box-shadow: var(--offset-shadow) var(--offset-shadow) 0 0 var(--color-contrast-b); }
+.o-compare .head {
+  font-size: var(--figure-2); font-weight: var(--weight-black); line-height: 1.3;
+  padding-bottom: var(--space-3); margin-bottom: var(--space-3);
+  border-bottom: var(--figure-stroke-min) solid var(--color-surface);
+}
+.o-compare .side.is-key .head { color: var(--color-accent); }
+.o-compare ul { margin: 0; padding: 0; list-style: none; }
+.o-compare li { font-size: var(--figure-1); line-height: 1.5; padding: var(--space-2) 0; }
+.o-compare .arrow { align-self: center; font-size: var(--figure-3); font-weight: var(--weight-black); color: var(--color-muted); }
+
+/* ---- flow（横） / steps・timeline（縦） --------------------- */
+.o-flow { display: flex; align-items: stretch; gap: 0; }
+.o-flow .box {
+  flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;
+  border: var(--figure-stroke-min) solid var(--color-ink); border-radius: var(--radius-3);
+  padding: var(--space-4) var(--space-3); background: var(--color-surface);
+}
+.o-flow .box.is-key { background: var(--color-accent); border-color: var(--color-accent); }
+.o-flow .label { font-size: var(--figure-2); font-weight: var(--weight-bold); line-height: 1.3; }
+.o-flow .sub { font-size: var(--figure-1); line-height: 1.4; margin-top: var(--space-2); }
+.o-flow .sep { flex: none; width: 56px; display: flex; align-items: center; justify-content: center; }
+.o-flow .sep svg { width: 40px; height: 56px; }
+
+.o-steps { display: flex; flex-direction: column; gap: var(--space-4); }
+.o-steps .row { display: flex; gap: var(--space-5); align-items: flex-start; }
+.o-steps .no {
+  flex: none; width: 96px; height: 96px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-ink); color: var(--color-base);
+  font-size: var(--figure-2); font-weight: var(--weight-black);
+}
+.o-steps .row.is-key .no { background: var(--color-accent); }
+.o-steps .label { font-size: var(--figure-2); font-weight: var(--weight-bold); line-height: 1.4; padding-top: var(--space-2); }
+.o-steps .detail { font-size: var(--figure-1); line-height: 1.5; color: var(--color-muted); }
+
+.o-timeline { position: relative; padding-left: 72px; }
+.o-timeline::before {
+  content: ""; position: absolute; left: 22px; top: 24px; bottom: 24px;
+  width: var(--figure-stroke-min); background: var(--color-muted);
+}
+.o-timeline .item { position: relative; padding-bottom: var(--space-5); }
+.o-timeline .item:last-child { padding-bottom: 0; }
+.o-timeline .item::before {
+  content: ""; position: absolute; left: -66px; top: 18px; width: 40px; height: 40px;
+  border-radius: var(--radius-full); background: var(--color-base);
+  border: var(--figure-stroke-min) solid var(--color-ink);
+}
+.o-timeline .item.is-key::before { background: var(--color-accent); border-color: var(--color-accent); }
+.o-timeline .when { font-size: var(--figure-1); color: var(--color-muted); font-weight: var(--weight-bold); }
+.o-timeline .label { font-size: var(--figure-2); font-weight: var(--weight-bold); line-height: 1.4; }
+.o-timeline .item.is-key .label { color: var(--color-accent); }
+
+/* ---- layers ----------------------------------------------- */
+.o-layers { display: flex; flex-direction: column; gap: var(--space-3); }
+.o-layers .layer {
+  border-radius: var(--radius-3); padding: var(--space-4) var(--space-5);
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+}
+.o-layers .label { font-size: var(--figure-2); font-weight: var(--weight-bold); line-height: 1.3; }
+.o-layers .sub { font-size: var(--figure-1); line-height: 1.4; text-align: right; }
+
+/* ---- bar（横棒） ------------------------------------------- */
+.o-bar { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); row-gap: var(--space-4); align-items: center; }
+.o-bar .label { font-size: var(--figure-1); font-weight: var(--weight-bold); line-height: 1.3; white-space: nowrap; }
+.o-bar .track { display: flex; align-items: center; gap: var(--space-3); }
+.o-bar .fill { height: 72px; border-radius: 0 var(--radius-2) var(--radius-2) 0; background: var(--color-muted); }
+.o-bar .fill.is-key { background: var(--color-accent); }
+.o-bar .value { font-size: var(--figure-1); font-weight: var(--weight-bold); white-space: nowrap; }
+.o-bar .value.is-key { color: var(--color-accent); font-size: var(--figure-2); }
+
+/* ---- share（100%積み上げ） ---------------------------------- */
+.o-share .bar { display: flex; height: 120px; border-radius: var(--radius-3); overflow: hidden; }
+.o-share .seg { display: flex; align-items: center; justify-content: center; font-size: var(--figure-1); font-weight: var(--weight-bold); }
+.o-share .legend { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin-top: var(--space-5); }
+.o-share .legend .it { display: flex; align-items: center; gap: var(--space-3); font-size: var(--figure-1); line-height: 1.3; }
+.o-share .legend .sw { width: 40px; height: 40px; border-radius: var(--radius-1); flex: none; }
+
+/* ---- stat（大きな数字） ------------------------------------- */
+.o-stat { display: flex; gap: var(--space-5); }
+.o-stat .card {
+  flex: 1; border-radius: var(--radius-3); background: var(--color-surface);
+  padding: var(--space-5); text-align: center;
+}
+.o-stat .card.is-key { background: var(--color-base); border: var(--figure-stroke-min) solid var(--color-accent); }
+.o-stat .num { font-size: var(--figure-4); font-weight: var(--weight-black); line-height: 1.1; }
+.o-stat .card.is-key .num { color: var(--color-accent); }
+.o-stat .unit { font-size: var(--figure-2); font-weight: var(--weight-bold); margin-left: var(--space-1); }
+.o-stat .label { font-size: var(--figure-1); line-height: 1.4; margin-top: var(--space-3); }
+
+/* ---- points（要点カード） ----------------------------------- */
+.o-points { display: grid; gap: var(--space-4); }
+.o-points .card {
+  border-left: 16px solid var(--color-ink); background: var(--color-surface);
+  border-radius: 0 var(--radius-3) var(--radius-3) 0; padding: var(--space-4) var(--space-5);
+}
+.o-points .card.is-key { border-left-color: var(--color-accent); }
+.o-points .head { font-size: var(--figure-2); font-weight: var(--weight-black); line-height: 1.35; }
+.o-points .body { font-size: var(--figure-1); line-height: 1.5; margin-top: var(--space-2); }
+
+/* ---- window（スクショ枠） ----------------------------------- */
+.o-window {
+  background: var(--color-base); border: var(--figure-stroke-min) solid var(--color-ink);
+  border-radius: var(--radius-3); overflow: hidden;
+  box-shadow: var(--offset-shadow) var(--offset-shadow) 0 0 var(--color-contrast-b);
+  margin: 0 var(--offset-shadow) var(--offset-shadow) 0;
+}
+.o-window .bar {
+  display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4);
+  background: var(--color-surface); border-bottom: var(--figure-stroke-min) solid var(--color-ink);
+}
+.o-window .dot { width: 32px; height: 32px; border-radius: var(--radius-full); border: 4px solid var(--color-ink); }
+.o-window .dot:nth-child(1) { background: var(--color-accent); }
+.o-window .dot:nth-child(2) { background: var(--color-contrast-b); }
+.o-window .dot:nth-child(3) { background: var(--color-contrast-a); }
+.o-window .wtitle {
+  flex: 1; text-align: center; margin-right: 128px; font-size: var(--figure-1); line-height: 1.2;
+  font-weight: var(--weight-bold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.o-window img { display: block; width: 100%; }
+
+/* ---- line（SVG） ------------------------------------------- */
+.o-line svg { display: block; width: 100%; height: auto; overflow: visible; }
+.o-line text { font-family: var(--font-family); }
+.o-line .legend { display: flex; gap: var(--space-5); margin-top: var(--space-4); flex-wrap: wrap; }
+.o-line .legend .it { display: flex; align-items: center; gap: var(--space-3); font-size: var(--figure-1); }
+.o-line .legend .sw { width: 56px; height: 12px; border-radius: 6px; }
