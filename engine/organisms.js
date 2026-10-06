@@ -304,7 +304,7 @@
         else { last.left = Math.min(last.left, r.left); last.right = Math.max(last.right, r.right); }
       });
       // 短く言い切る要素（ラベル・見出し・数字）が折れたら知らせる。説明文（detail・body・li・note）は折れてよい
-      const SHORT = ".fig-title, .label, .head, .num, .value, .when, th, .wtitle";
+      const SHORT = ".fig-title, .label, .head, .num, .value, .when, th, .wtitle, .o-flow .sub, .o-layers .sub, .o-share .it span";
       if (lines.length > 1 && el.matches(SHORT))
         out.push({ level: "warn", rule: "wrap", msg: `${where} が ${lines.length} 行に折れている。見出し・ラベルは1行に収める（言葉を短くするか、補足を note / detail に移す）` });
       else if (lines.length > 1) {

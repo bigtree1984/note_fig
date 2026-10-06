@@ -41,9 +41,11 @@ body { margin: 0; background: #E9E7E2; }
 .o-table th:first-child { border-radius: var(--radius-2) 0 0 0; }
 .o-table th:last-child  { border-radius: 0 var(--radius-2) 0 0; }
 .o-table td { border-bottom: var(--figure-stroke-min) solid var(--color-surface); }
+.o-table tbody tr:last-child td { border-bottom: 0; }
+.o-table td:first-child, .o-table th:first-child { width: 1%; }  /* 行見出しは中身の幅、残りを値の列で分ける */
 .o-table tbody tr:nth-child(even) td { background: var(--color-surface); }
 .o-table td:first-child { font-weight: var(--weight-bold); white-space: nowrap; }
-.o-table td.is-key {
+.o-table tbody tr td.is-key {
   background: color-mix(in srgb, var(--color-accent) 14%, var(--color-base));
   font-weight: var(--weight-bold);
   box-shadow: inset var(--figure-stroke-min) 0 0 0 var(--color-accent);
@@ -55,7 +57,7 @@ body { margin: 0; background: #E9E7E2; }
   border: var(--figure-stroke-min) solid var(--color-ink); border-radius: var(--radius-3);
   padding: var(--space-5); background: var(--color-base);
 }
-.o-compare .side.is-key { border-color: var(--color-accent); box-shadow: var(--offset-shadow) var(--offset-shadow) 0 0 var(--color-contrast-b); }
+.o-compare .side.is-key { border-color: var(--color-accent); }
 .o-compare .head {
   font-size: var(--figure-2); font-weight: var(--weight-black); line-height: 1.3;
   padding-bottom: var(--space-3); margin-bottom: var(--space-3);
