@@ -11,6 +11,9 @@ body { margin: 0; background: #E9E7E2; }
   font-family: var(--font-family);
   font-size: var(--figure-2);
   line-height: 1.5;
+  /* 日本語を文節で折り返す（Chrome 119+）。「統／合」のような単語の途中での改行を防ぐ */
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;  /* 文節で収まらない長いカタカナ語は最後の手段として折る（検査が wrap で知らせる） */
 }
 .figure-root * { box-sizing: border-box; }
 
@@ -66,7 +69,7 @@ body { margin: 0; background: #E9E7E2; }
 /* ---- flow（横） / steps・timeline（縦） --------------------- */
 .o-flow { display: flex; align-items: stretch; gap: 0; }
 .o-flow .box {
-  flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;
+  flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; text-align: center;
   border: var(--figure-stroke-min) solid var(--color-ink); border-radius: var(--radius-3);
   padding: var(--space-4) var(--space-3); background: var(--color-surface);
 }
@@ -137,7 +140,7 @@ body { margin: 0; background: #E9E7E2; }
   padding: var(--space-5); text-align: center;
 }
 .o-stat .card.is-key { background: var(--color-base); border: var(--figure-stroke-min) solid var(--color-accent); }
-.o-stat .num { font-size: var(--figure-4); font-weight: var(--weight-black); line-height: 1.1; }
+.o-stat .num { white-space: nowrap; font-size: var(--figure-4); font-weight: var(--weight-black); line-height: 1.1; }
 .o-stat .card.is-key .num { color: var(--color-accent); }
 .o-stat .unit { font-size: var(--figure-2); font-weight: var(--weight-bold); margin-left: var(--space-1); }
 .o-stat .label { font-size: var(--figure-1); line-height: 1.4; margin-top: var(--space-3); }

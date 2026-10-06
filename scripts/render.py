@@ -206,7 +206,8 @@ def main():
     binary = find_chrome(a.chrome)
     first = specs[0].resolve().parent
     out_dir = Path(a.out).resolve() if a.out else None
-    workdir = (out_dir or first) / "_build"
+    # 中間の HTML は記事のフォルダを汚さないよう一時フォルダに置く。--preview のときだけ残す
+    workdir = Path(tempfile.mkdtemp(prefix="note_fig_")) if not a.preview else (out_dir or first) / "_build"
     workdir.mkdir(parents=True, exist_ok=True)
 
     results = []
@@ -220,6 +221,8 @@ def main():
     errors = sum(1 for r in results for i in r["issues"] if i["level"] == "error")
     warns = sum(1 for r in results for i in r["issues"] if i["level"] == "warn")
     print(f"\n{len(results)}枚 ／ error {errors} ／ warn {warns}")
+    if not a.preview:
+        shutil.rmtree(workdir, ignore_errors=True)
     sys.exit(1 if errors else 0)
 
 

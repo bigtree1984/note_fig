@@ -295,13 +295,23 @@
       const w = el.getBoundingClientRect().width;
       if (text.length > maxChars && w / fs > maxChars + 0.5)
         out.push({ level: "warn", rule: "line-chars", msg: `${where} が1行 ${Math.floor(w / fs)} 字ぶんの幅で組まれている。28字を超えるとスマホで小さく見える` });
-      const cap = Math.floor(w / fs);
+      // 行ごとの矩形を集める。上端が 0.6 字ぶん以上離れたら別の行（大小の文字が混ざった行は1行と数える）
       const rg = document.createRange(); rg.selectNodeContents(el);
-      // 行数を数える。上端が 0.6 字ぶん以上離れたら別の行（大小の文字が混ざった行は1行と数える）
-      let lines = 0, lastTop = -1e9;
-      [...rg.getClientRects()].sort((a, b) => a.top - b.top).forEach(r => { if (r.top - lastTop > fs * 0.6) { lines++; lastTop = r.top; } });
-      if (lines > 1 && cap < 8)
-        out.push({ level: "warn", rule: "narrow", msg: `${where} が1行 ${cap} 字の狭い枠で折り返している。単語の途中で折れやすい` });
+      const lines = [];
+      [...rg.getClientRects()].sort((a, b) => a.top - b.top).forEach(r => {
+        const last = lines[lines.length - 1];
+        if (!last || r.top - last.top > fs * 0.6) lines.push({ top: r.top, left: r.left, right: r.right });
+        else { last.left = Math.min(last.left, r.left); last.right = Math.max(last.right, r.right); }
+      });
+      // 短く言い切る要素（ラベル・見出し・数字）が折れたら知らせる。説明文（detail・body・li・note）は折れてよい
+      const SHORT = ".fig-title, .label, .head, .num, .value, .when, th, .wtitle";
+      if (lines.length > 1 && el.matches(SHORT))
+        out.push({ level: "warn", rule: "wrap", msg: `${where} が ${lines.length} 行に折れている。見出し・ラベルは1行に収める（言葉を短くするか、補足を note / detail に移す）` });
+      else if (lines.length > 1) {
+        const tail = lines[lines.length - 1];
+        if (tail.right - tail.left < fs * 2.5)
+          out.push({ level: "warn", rule: "orphan", msg: `${where} の最後の行が1〜2字だけ。言葉を少し削ると1行減る` });
+      }
       if (st.textOverflow === "ellipsis" && el.scrollWidth > el.clientWidth + 1)
         out.push({ level: "warn", rule: "ellipsis", msg: `${where} が省略記号で切れている` });
       else if (el.scrollWidth > el.clientWidth + 1 && st.overflow !== "visible")
