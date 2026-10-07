@@ -225,6 +225,22 @@
     return w;
   };
 
+  O.chat = (s) => {
+    const w = h("div", "o-chat");
+    if (s.head) w.appendChild(h("div", "chat-head", s.head));
+    const body = w.appendChild(h("div", "turns"));
+    (s.turns || []).forEach((t, i) => {
+      const mine = t.from === "me";
+      const row = body.appendChild(h("div", "turn " + (mine ? "me" : "them") + (isKey(s, i) ? " is-key" : "")));
+      if (t.avatar) { const im = row.appendChild(h("img", "av")); im.src = t.avatar; im.alt = ""; }
+      const col = row.appendChild(h("div", "col"));
+      if (t.name) col.appendChild(h("div", "who", t.name));
+      col.appendChild(h("div", "bubble", t.text));
+      if (t.meta) col.appendChild(h("div", "meta", t.meta));
+    });
+    return w;
+  };
+
   O.line = (s) => {
     const wrap = h("div", "o-line");
     const W = px("--figure-width") - 2 * px("--space-6"), H = 620;
