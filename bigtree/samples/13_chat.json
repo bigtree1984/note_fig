@@ -1,0 +1,10 @@
+{"type":"chat","title":"直す前に、何が起きたかを聞く",
+ "head":"Claude Code とのやりとり",
+ "turns":[
+  {"from":"them","name":"Claude","text":"テストが3件落ちました。原因は日付の扱いです"},
+  {"from":"me","text":"どの関数？"},
+  {"from":"them","name":"Claude","text":"parse_date です。月またぎのときだけ1日ずれます"},
+  {"from":"me","text":"直して。ついでに同じ書き方が他にないか見て"}
+ ],
+ "key":2,
+ "note":"※ 会話は例です"}

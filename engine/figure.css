@@ -178,6 +178,41 @@ body { margin: 0; background: #E9E7E2; }
 }
 .o-window img { display: block; width: 100%; }
 
+/* ---- chat（会話） ------------------------------------------- */
+.o-chat {
+  background: var(--color-surface); border: var(--figure-stroke-min) solid var(--color-ink);
+  border-radius: var(--radius-3); overflow: hidden;
+}
+.o-chat .chat-head {
+  padding: var(--space-3) var(--space-4); background: var(--color-base);
+  border-bottom: var(--figure-stroke-min) solid var(--color-ink);
+  font-size: var(--figure-1); line-height: 1.2; font-weight: var(--weight-bold);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.o-chat .turns { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5); }
+.o-chat .turn { display: flex; align-items: flex-start; gap: var(--space-3); }
+.o-chat .turn.me { flex-direction: row-reverse; }
+.o-chat .av {
+  flex: none; width: 88px; height: 88px; border-radius: var(--radius-full);
+  object-fit: cover; background: var(--color-base);
+  border: var(--figure-stroke-min) solid var(--color-ink);
+}
+.o-chat .col { max-width: 74%; display: flex; flex-direction: column; gap: var(--space-2); }
+.o-chat .turn.me .col { align-items: flex-end; }
+.o-chat .who { font-size: var(--figure-1); line-height: 1.2; font-weight: var(--weight-bold); color: var(--color-muted); }
+.o-chat .bubble {
+  padding: var(--space-3) var(--space-4); font-size: var(--figure-1); line-height: 1.5;
+  background: var(--color-base); color: var(--color-ink);
+  border: var(--figure-stroke-min) solid var(--color-ink);
+  border-radius: var(--radius-3) var(--radius-3) var(--radius-3) var(--radius-1);
+}
+.o-chat .turn.me .bubble {
+  background: var(--color-contrast-a); color: var(--color-base); border-color: var(--color-contrast-a);
+  border-radius: var(--radius-3) var(--radius-3) var(--radius-1) var(--radius-3);
+}
+.o-chat .turn.is-key .bubble { background: var(--color-accent); color: var(--color-base); border-color: var(--color-accent); }
+.o-chat .meta { font-size: var(--figure-1); line-height: 1.2; color: var(--color-muted); }
+
 /* ---- line（SVG） ------------------------------------------- */
 .o-line svg { display: block; width: 100%; height: auto; overflow: visible; }
 .o-line text { font-family: var(--font-family); }

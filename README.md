@@ -19,13 +19,13 @@ note の挿絵は、スマホでは**幅 343pt まで縮みます**。PC の画�
 
 ## できること
 
-12の型（Organism）にデータを流し込んで描きます。
+13の型（Organism）にデータを流し込んで描きます。
 
 | 比べる | 順番 | 量・変化 | まとめる |
 |---|---|---|---|
 | 比較テーブル `table` | プロセス `flow` | 横棒 `bar` | 大きな数字 `stat` |
 | 2項の対比 `compare` | 番号付き手順 `steps` | 折れ線 `line` | 要点カード `points` |
-| 積層 `layers` | 時系列 `timeline` | 構成比 `share` | スクショ枠 `window` |
+| 積層 `layers` | 時系列 `timeline` | 構成比 `share` | スクショ枠 `window`<br>会話 `chat` |
 
 ## はじめかた
 
