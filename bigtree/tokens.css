@@ -11,6 +11,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap");
 
+/* 色の値は ~/0019_design_system/bigtree-lab から生成。手で編集しない（scripts/build.py） */
 :root {
   /* ---- 色（7役。役を増やさない） -------------------------- */
   --color-base:       #FFFFFF;  /* 地。note の本文背景に溶ける           */
